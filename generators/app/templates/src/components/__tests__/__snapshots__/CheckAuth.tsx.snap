@@ -11,12 +11,12 @@ ShallowWrapper {
   "node": <Redirect
     push={true}
     to="/login"
-/>,
+  />,
   "nodes": Array [
     <Redirect
       push={true}
       to="/login"
-/>,
+    />,
   ],
   "options": Object {},
   "renderer": ReactShallowRenderer {
@@ -27,11 +27,11 @@ ShallowWrapper {
       "_currentElement": <CheckAuth
         shop={null}
         token="authToken"
->
+      >
         <h1>
-                It's Ok
+          It's Ok
         </h1>
-</CheckAuth>,
+      </CheckAuth>,
       "_debugID": 1,
       "_hostContainerInfo": null,
       "_hostParent": null,
@@ -41,7 +41,7 @@ ShallowWrapper {
         "props": Object {
           "children": <h1>
             It's Ok
-</h1>,
+          </h1>,
           "shop": null,
           "token": "authToken",
         },
@@ -68,12 +68,12 @@ ShallowWrapper {
         "_currentElement": <Redirect
           push={true}
           to="/login"
-/>,
+        />,
         "_debugID": 2,
         "_renderedOutput": <Redirect
           push={true}
           to="/login"
-/>,
+        />,
       },
       "_renderedNodeType": 1,
       "_rootNodeID": 0,
@@ -88,11 +88,11 @@ ShallowWrapper {
   "unrendered": <CheckAuth
     shop={null}
     token="authToken"
->
+  >
     <h1>
-        It's Ok
+      It's Ok
     </h1>
-</CheckAuth>,
+  </CheckAuth>,
 }
 `;
 
@@ -107,12 +107,12 @@ ShallowWrapper {
   "node": <Redirect
     push={true}
     to="/login"
-/>,
+  />,
   "nodes": Array [
     <Redirect
       push={true}
       to="/login"
-/>,
+    />,
   ],
   "options": Object {},
   "renderer": ReactShallowRenderer {
@@ -123,11 +123,11 @@ ShallowWrapper {
       "_currentElement": <CheckAuth
         shop="example.myshopify.com"
         token={null}
->
+      >
         <h1>
-                It's Ok
+          It's Ok
         </h1>
-</CheckAuth>,
+      </CheckAuth>,
       "_debugID": 3,
       "_hostContainerInfo": null,
       "_hostParent": null,
@@ -137,7 +137,7 @@ ShallowWrapper {
         "props": Object {
           "children": <h1>
             It's Ok
-</h1>,
+          </h1>,
           "shop": "example.myshopify.com",
           "token": null,
         },
@@ -164,12 +164,12 @@ ShallowWrapper {
         "_currentElement": <Redirect
           push={true}
           to="/login"
-/>,
+        />,
         "_debugID": 4,
         "_renderedOutput": <Redirect
           push={true}
           to="/login"
-/>,
+        />,
       },
       "_renderedNodeType": 1,
       "_rootNodeID": 0,
@@ -184,11 +184,11 @@ ShallowWrapper {
   "unrendered": <CheckAuth
     shop="example.myshopify.com"
     token={null}
->
+  >
     <h1>
-        It's Ok
+      It's Ok
     </h1>
-</CheckAuth>,
+  </CheckAuth>,
 }
 `;
 
