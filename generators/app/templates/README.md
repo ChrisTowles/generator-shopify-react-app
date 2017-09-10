@@ -103,5 +103,11 @@ mutation ShopifyAuthComplete($token: String!, $params: ShopifyAuthCompleteInput!
 }`;
 ```
 
+## Expired Token Handling
+When the user presents an expired or invalid authorization token the GraphQL API should respond with a HTTP 403 (Forbidden) status code. The application will then automatically redirect the user to `/login`.
+
+## Refreshng Tokens
+If the GraphQL API returns a `x-new-token` header in the response then the client will automatically replace the authorization token stored in localStorage with the new token. This allows the GraphQL API to refresh the token automatically for users. By using this you can keep token lifetimes short while still allowing the users to stay logged in for extended periods providing they are active.
+
 # Copyright
 This project copyright 2017 Rich Buggy & [Growing eCommerce Pty Ltd](http://www.growingecommerce.com). See the LICENCE file for information about using and distributing this project.
