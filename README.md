@@ -22,7 +22,7 @@ yo shopify-react-app
 
 This will prompt you to enter your application name, Shopify API key and GraphQL endpoint. You can also provide parameters on the command line using
 
-``ssh
+```ssh
 yo shopify-react-app --appname "YOUR APP NAME" --shopifyApiKey "YOUR-API-KEY" --graphqlApiUrl "https://YOUR-SITE/graphql"
 ```
 
