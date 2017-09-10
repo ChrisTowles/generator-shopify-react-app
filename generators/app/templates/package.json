@@ -41,7 +41,7 @@
     "@types/react-router-dom": "^4.0.7",
     "@types/react-test-renderer": "^15.5.4",
     "apollo-codegen": "^0.16.5",
-    "awesome-typescript-loader": "^3.2.2",
+    "awesome-typescript-loader": "^3.2.3",
     "copy-webpack-plugin": "^4.0.1",
     "enzyme": "^2.9.1",
     "html-webpack-plugin": "^2.30.1",
