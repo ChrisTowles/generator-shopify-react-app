@@ -43,7 +43,6 @@ module.exports = class extends Generator {
 
     writing() {
         const templateFiles = [
-            "index.html",
             "LICENSE",
             "package.json",
             "package-lock.json",
@@ -79,8 +78,11 @@ module.exports = class extends Generator {
             "webpack/prod.config.js",
         ];
         const otherFiles = [
+            "src/index.ejs",
             "dist/.gitkeep",
-            "static/css/login.css"
+            "static/css/login.css",
+            "static/img/.gitkeep",
+            "static/js/.gitkeep"
         ];
         const params = {
             "appname": this.options.appname || this.appname,

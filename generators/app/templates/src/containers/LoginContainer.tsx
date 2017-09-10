@@ -64,7 +64,7 @@ class LoginContainer extends React.Component<ILoginContainerProps, ILoginContain
         return (
             <div className="application">
                 <Helmet>
-                    <link rel="stylesheet" href="/static/css/login.css" />
+                    <link rel="stylesheet" href="/css/login.css" />
                     <title>Shopify App &mdash; Installation</title>
                 </Helmet>
                 <Login

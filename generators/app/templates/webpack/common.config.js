@@ -1,4 +1,6 @@
-var path = require("path");
+const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 module.exports = {
     entry: ["./src/index.tsx"],
@@ -6,9 +8,20 @@ module.exports = {
     output: {
         filename: "bundle.js",
         path: path.resolve(__dirname, "../dist"),
-        publicPath: 'dist',
+        publicPath: "/",
     },
 
+    plugins: [
+        new HtmlWebpackPlugin({
+            title: "<%= appname %>",
+            template: "src/index.ejs",
+        }),
+        new CopyWebpackPlugin([
+            { from: "static" },
+            { from: "node_modules/react/dist/react.js", to: "js" },
+            { from: "node_modules/react-dom/dist/react-dom.js", to: "js" },
+        ], {}),
+    ],
     resolve: {
         // Add '.ts' and '.tsx' as resolvable extensions.
         extensions: [".tsx", ".ts", ".js"]

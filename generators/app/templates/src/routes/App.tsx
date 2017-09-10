@@ -46,7 +46,7 @@ networkInterface.useAfter([{
             window.location.pathname = "/login";
         }
         next();
-    }
+    },
 }]);
 
 // Create an Apollo client

@@ -27,7 +27,7 @@ class LogoutContainer extends React.Component<ILogoutContainerProps, undefined> 
         return (
             <div className="application">
                 <Helmet>
-                    <link rel="stylesheet" href="/static/css/login.css" />
+                    <link rel="stylesheet" href="/css/login.css" />
                     <title>Shopify App &mdash; Logout</title>
                 </Helmet>
                 <Redirect to="/login" />
