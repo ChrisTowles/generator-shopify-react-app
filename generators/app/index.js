@@ -51,7 +51,6 @@ module.exports = class extends Generator {
             "schema.json",
             "tsconfig.json",
             "tslint.json",
-            "webpack.config.js",
             "src/constants.ts",
             "src/index.tsx",
             "src/schema.ts",
@@ -75,6 +74,9 @@ module.exports = class extends Generator {
             "src/lib/query-string.ts",
             "src/lib/__tests__/query-string.ts",
             "src/routes/App.tsx",
+            "webpack/common.config.js",
+            "webpack/dev.config.js",
+            "webpack/prod.config.js",
         ];
         const otherFiles = [
             "dist/.gitkeep",
