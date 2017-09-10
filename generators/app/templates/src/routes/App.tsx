@@ -34,6 +34,12 @@ networkInterface.use([{
 
 networkInterface.useAfter([{
     applyAfterware({ response }, next) {
+        // Replace the token in out session storage if the server sends back a new one
+        const newToken = response.headers.get("x-new-token");
+        if (newToken) {
+            localStorage.setItem(TOKEN_KEY, newToken);
+        }
+
         // Automatically redirect to /login if the GraphQL API returns 403 (Forbidden)
         if (response.status === 403) {
             localStorage.removeItem("token");
