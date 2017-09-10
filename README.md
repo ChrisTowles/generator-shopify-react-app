@@ -103,5 +103,8 @@ mutation ShopifyAuthComplete($token: String!, $params: ShopifyAuthCompleteInput!
 }`;
 ```
 
+## Expired Token Handling
+When the user presents an expired or invalid authorization token the GraphQL API should respond with a HTTP 403 (Forbidden) status code. The application will then automatically redirect the user to `/login`.
+
 # Copyright
 This project copyright 2017 Rich Buggy & [Growing eCommerce Pty Ltd](http://www.growingecommerce.com). See the LICENCE file for information about using and distributing this project.

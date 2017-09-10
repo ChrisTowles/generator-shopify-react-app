@@ -32,6 +32,17 @@ networkInterface.use([{
     },
 }]);
 
+networkInterface.useAfter([{
+    applyAfterware({ response }, next) {
+        // Automatically redirect to /login if the GraphQL API returns 403 (Forbidden)
+        if (response.status === 403) {
+            localStorage.removeItem("token");
+            window.location.pathname = "/login";
+        }
+        next();
+    }
+}]);
+
 // Create an Apollo client
 const client = new ApolloClient({
     dataIdFromObject: (o: any) => o.id,
