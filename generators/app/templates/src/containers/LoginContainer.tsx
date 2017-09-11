@@ -7,7 +7,8 @@ import { Login } from "../components/Login";
 import { parseQueryString } from "../lib/query-string";
 import { ShopifyAuthBeginMutation, ShopifyAuthBeginMutationVariables } from "../schema";
 
-import { AUTH_TOKEN_KEY, SHOP_KEY } from "../constants";
+declare const AUTH_TOKEN_KEY: string;
+declare const SHOP_KEY: string;
 
 import * as ShopifyAuthBeginMutationGQL from "../graphql/ShopifyAuthBeginMutation.graphql";
 

@@ -3,7 +3,9 @@ import { ApolloClient, withApollo } from "react-apollo";
 import { Helmet } from "react-helmet";
 import { Redirect } from "react-router";
 
-import { AUTH_TOKEN_KEY, SHOP_KEY, TOKEN_KEY } from "../constants";
+declare const AUTH_TOKEN_KEY: string;
+declare const SHOP_KEY: string;
+declare const TOKEN_KEY: string;
 
 interface ILogoutContainerProps {
     client: ApolloClient;

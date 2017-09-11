@@ -7,7 +7,8 @@ import { Callback } from "../components/Callback";
 import { parseQueryString } from "../lib/query-string";
 import { ShopifyAuthCompleteInput, ShopifyAuthCompleteMutation, ShopifyAuthCompleteMutationVariables } from "../schema";
 
-import { AUTH_TOKEN_KEY, TOKEN_KEY } from "../constants";
+declare const AUTH_TOKEN_KEY: string;
+declare const TOKEN_KEY: string;
 
 import * as ShopifyAuthCompleteMutationGQL from "../graphql/ShopifyAuthCompleteMutation.graphql";
 

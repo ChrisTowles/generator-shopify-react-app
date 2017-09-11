@@ -10,7 +10,9 @@ import { HomeContainer } from "../containers/HomeContainer";
 import { LoginContainerWithData } from "../containers/LoginContainer";
 import { LogoutContainerWithData } from "../containers/LogoutContainer";
 
-import { BASE_API_URL, SHOP_KEY, TOKEN_KEY } from "../constants";
+declare const BASE_API_URL: string;
+declare const SHOP_KEY: string;
+declare const TOKEN_KEY: string;
 
 // Create a network interface with the config for our GraphQL API
 const networkInterface = createNetworkInterface({

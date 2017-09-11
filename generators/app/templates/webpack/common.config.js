@@ -1,6 +1,6 @@
 const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
     entry: ["./src/index.tsx"],
@@ -13,7 +13,7 @@ module.exports = {
 
     plugins: [
         new HtmlWebpackPlugin({
-            title: "<%= appname %>",
+            title: "Shopify-React-App",
             template: "src/index.ejs",
         }),
         new CopyWebpackPlugin([
@@ -22,6 +22,7 @@ module.exports = {
             { from: "node_modules/react-dom/dist/react-dom.js", to: "js" },
         ], {}),
     ],
+
     resolve: {
         // Add '.ts' and '.tsx' as resolvable extensions.
         extensions: [".tsx", ".ts", ".js"]

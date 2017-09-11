@@ -50,7 +50,6 @@ module.exports = class extends Generator {
             "schema.json",
             "tsconfig.json",
             "tslint.json",
-            "src/constants.ts",
             "src/index.tsx",
             "src/schema.ts",
             "src/components/Callback.tsx",
