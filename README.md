@@ -34,26 +34,28 @@ npm install
 ```
 
 # Configuration
-Your configuration is stored in the `src/constants.ts` file. If you filled in these correctly when running the generator then you can skip this.
+The configuration has moved the `webpack/{environment}.config.js`. If you were previously using the `src/constants.ts` file you need to copy your settings into the relevant webpack config file then remove the constants.ts.
+
+If you filled in these correctly when running the generator then you can skip this.
 
 ```typescript
 // The key used to store our temporary OAuth token in localStorage
-export const AUTH_TOKEN_KEY = "authToken";
+AUTH_TOKEN_KEY: JSON.stringify("authToken"),
 
 // The base URL for our API endpoint
-export const BASE_API_URL = "YOUR-GRAPHQL-API-ENDPOINT";
+BASE_API_URL: JSON.stringify("YOUR-GRAPHQL-API-ENDPOINT"),
 
 // Set to true to enable an embedded app or false to disable it
-export const ENABLED_EMBEDDED = true;
+ENABLED_EMBEDDED: JSON.stringify(true),
 
 // The key used to store the shop domain in localStorage
-export const SHOP_KEY = "shop";
+SHOP_KEY: JSON.stringify("shop"),
 
 // Your Shopify API Key
-export const SHOPIFY_API_KEY = "YOUR-SHOPIFY-API-KEY";
+SHOPIFY_API_KEY: JSON.stringify("YOUR-SHOPIFY-API-KEY"),
 
 // The key used to store our API authorization token in localStorage
-export const TOKEN_KEY = "token";
+TOKEN_KEY: JSON.stringify("token"),
 ```
 
 # Development Server
