@@ -6,7 +6,7 @@
   "scripts": {
     "build": "webpack --config ./webpack/prod.config.js --define process.env.NODE_ENV='production'",
     "clean": "rm -rf dist/*",
-    "lint": "tslint -p tsconfig.json --type-check",
+    "lint": "tslint -c tslint.json -p tsconfig.json --type-check",
     "prebuild": "npm run clean && npm run lint",
     "pretest": "npm run build",
     "start": "webpack-dev-server --config ./webpack/dev.config.js --open -d",
