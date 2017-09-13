@@ -66,6 +66,7 @@ module.exports = class extends Generator {
             "src/containers/HomeContainer.tsx",
             "src/containers/LoginContainer.tsx",
             "src/containers/LogoutContainer.tsx",
+            "src/containers/NotFoundContainer.tsx",
             "src/graphql/index.d.ts",
             "src/graphql/ShopifyAuthBeginMutation.graphql",
             "src/graphql/ShopifyAuthCompleteMutation.graphql",

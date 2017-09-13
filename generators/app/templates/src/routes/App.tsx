@@ -9,6 +9,7 @@ import { EmbeddedAppContainer } from "../containers/EmbeddedAppContainer";
 import { HomeContainer } from "../containers/HomeContainer";
 import { LoginContainerWithData } from "../containers/LoginContainer";
 import { LogoutContainerWithData } from "../containers/LogoutContainer";
+import { NotFoundContainer } from "../containers/NotFoundContainer";
 
 declare const BASE_API_URL: string;
 declare const SHOP_KEY: string;
@@ -86,7 +87,8 @@ export class App extends React.Component<{}, {}> {
                         <CheckAuth shop={shop} token={token}>
                             <EmbeddedAppContainer>
                                 <Switch>
-                                    <Route path="/" component={HomeContainer} />
+                                    <Route exact path="/" component={HomeContainer} />
+                                    <Route component={NotFoundContainer} />
                                 </Switch>
                             </EmbeddedAppContainer>
                         </CheckAuth>
