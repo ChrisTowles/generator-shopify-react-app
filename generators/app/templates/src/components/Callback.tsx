@@ -3,7 +3,6 @@ import * as React from "react";
 
 import * as styles from "./callback.scss";
 
-
 interface ICallbackProps {
     errorMessage: string | null;
     loginUrl: string;

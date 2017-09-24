@@ -2,20 +2,11 @@
 
 exports[`Renders correctly with error 1`] = `
 <main
+  className="main"
   role="main"
-  style={
-    Object {
-      "marginTop": "100px",
-    }
-  }
 >
   <header
-    style={
-      Object {
-        "marginBottom": "50px",
-        "textAlign": "center",
-      }
-    }
+    className="header"
   >
     <p
       className="Polaris-DisplayText Polaris-DisplayText--sizeExtraLarge"
@@ -24,12 +15,7 @@ exports[`Renders correctly with error 1`] = `
     </p>
   </header>
   <div
-    style={
-      Object {
-        "margin": "auto",
-        "width": "400px",
-      }
-    }
+    className="form"
   >
     <div
       className="Polaris-FormLayout"
@@ -138,20 +124,11 @@ exports[`Renders correctly with error 1`] = `
 
 exports[`Renders correctly with no error or shop 1`] = `
 <main
+  className="main"
   role="main"
-  style={
-    Object {
-      "marginTop": "100px",
-    }
-  }
 >
   <header
-    style={
-      Object {
-        "marginBottom": "50px",
-        "textAlign": "center",
-      }
-    }
+    className="header"
   >
     <p
       className="Polaris-DisplayText Polaris-DisplayText--sizeExtraLarge"
@@ -160,12 +137,7 @@ exports[`Renders correctly with no error or shop 1`] = `
     </p>
   </header>
   <div
-    style={
-      Object {
-        "margin": "auto",
-        "width": "400px",
-      }
-    }
+    className="form"
   >
     <div
       className="Polaris-FormLayout"
@@ -250,20 +222,11 @@ exports[`Renders correctly with no error or shop 1`] = `
 
 exports[`Renders correctly with shop 1`] = `
 <main
+  className="main"
   role="main"
-  style={
-    Object {
-      "marginTop": "100px",
-    }
-  }
 >
   <header
-    style={
-      Object {
-        "marginBottom": "50px",
-        "textAlign": "center",
-      }
-    }
+    className="header"
   >
     <p
       className="Polaris-DisplayText Polaris-DisplayText--sizeExtraLarge"
@@ -272,12 +235,7 @@ exports[`Renders correctly with shop 1`] = `
     </p>
   </header>
   <div
-    style={
-      Object {
-        "margin": "auto",
-        "width": "400px",
-      }
-    }
+    className="form"
   >
     <div
       className="Polaris-FormLayout"
