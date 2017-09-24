@@ -52,8 +52,11 @@ module.exports = class extends Generator {
             "tslint.json",
             "src/index.tsx",
             "src/schema.ts",
+            "src/styles.global.scss",
+            "src/components/callback.scss",
             "src/components/Callback.tsx",
             "src/components/CheckAuth.tsx",
+            "src/components/login.scss",
             "src/components/Login.tsx",
             "src/components/__tests__/Callback.tsx",
             "src/components/__tests__/CheckAuth.tsx",
@@ -80,7 +83,7 @@ module.exports = class extends Generator {
         const otherFiles = [
             "src/index.ejs",
             "dist/.gitkeep",
-            "static/css/login.css",
+            "static/css/.gitkeep",
             "static/img/.gitkeep",
             "static/js/.gitkeep"
         ];

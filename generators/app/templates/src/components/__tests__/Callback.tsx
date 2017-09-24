@@ -3,7 +3,7 @@ import * as renderer from "react-test-renderer";
 import { Callback } from "../Callback";
 
 test("Renders correctly with no error", () => {
-  const login = <Callback errorMessage={null} />;
+  const login = <Callback errorMessage={null} loginUrl="/" />;
 
   const component = renderer.create(login);
   const tree = component.toJSON();
@@ -11,7 +11,7 @@ test("Renders correctly with no error", () => {
 });
 
 test("Renders correctly with error", () => {
-  const login = <Callback errorMessage={"Something went wrong"} />;
+  const login = <Callback errorMessage={"Something went wrong"} loginUrl="/" />;
 
   const component = renderer.create(login);
   const tree = component.toJSON();

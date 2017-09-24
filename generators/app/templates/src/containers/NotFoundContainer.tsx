@@ -15,7 +15,6 @@ export class NotFoundContainer extends React.Component<RouteComponentProps<undef
             <div className="application">
                 <Helmet>
                     <title>Shopify App &mdash; Page Not Found</title>
-                    <link rel="stylesheet" href="https://sdks.shopifycdn.com/polaris/1.5.1/polaris.min.css" />
                 </Helmet>
                 <Page title="Page Not Found">
                     <EmptyState

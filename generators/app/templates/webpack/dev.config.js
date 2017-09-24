@@ -1,10 +1,16 @@
 const path = require("path");
 const webpack = require("webpack");
 const merge = require("webpack-merge");
-
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const common = require("./common.config.js");
 
-module.exports = merge(common, {
+const extractCSS = new ExtractTextPlugin({
+    allChunks: true,
+    disable: true,
+    filename: "app.css",
+});
+
+module.exports = merge(common(extractCSS), {
     devtool: "inline",
 
     devServer: {

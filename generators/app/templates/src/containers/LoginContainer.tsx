@@ -13,7 +13,9 @@ declare const SHOP_KEY: string;
 import * as ShopifyAuthBeginMutationGQL from "../graphql/ShopifyAuthBeginMutation.graphql";
 
 interface ILoginContainerState {
-    errorMessage: string | null;
+    disableInstall: boolean;
+    errorMessage: string | undefined;
+    installMessage: string;
     shop: string;
 }
 
@@ -27,7 +29,9 @@ class LoginContainer extends React.Component<ILoginContainerProps, ILoginContain
     constructor(props: ILoginContainerProps) {
         super(props);
         this.state = {
-            errorMessage: null,
+            disableInstall: false,
+            errorMessage: undefined,
+            installMessage: "Install",
             shop: "",
         };
         this.handleChange = this.handleChange.bind(this);
@@ -35,26 +39,11 @@ class LoginContainer extends React.Component<ILoginContainerProps, ILoginContain
     }
 
     public componentDidMount(): void {
-        this.componentWillReceiveProps(this.props);
+        this.receiveProps(this.props);
     }
 
     public componentWillReceiveProps(nextProps: ILoginContainerProps): void {
-        // Get the shop parameter from the query string
-        const params = parseQueryString(nextProps.location.search);
-        const shop = params.shop;
-        if (shop !== undefined) {
-            // Validate the shop domain and set the state
-            const errorMessage = this.shopErrorMessage(shop);
-            this.setState({
-                errorMessage,
-                shop,
-            });
-
-            // Iff there was no error message the attempt to login
-            if (errorMessage === null) {
-                this.doLogin(shop);
-            }
-        }
+        this.receiveProps(nextProps);
     }
 
     // Render the login component
@@ -65,76 +54,105 @@ class LoginContainer extends React.Component<ILoginContainerProps, ILoginContain
         return (
             <div className="application">
                 <Helmet>
-                    <link rel="stylesheet" href="/css/login.css" />
                     <title>Shopify App &mdash; Installation</title>
                 </Helmet>
                 <Login
                     shop={this.state.shop}
+                    disableInstall={this.state.disableInstall}
                     handleSubmit={this.handleSubmit}
                     handleStoreChanged={this.handleChange}
-                    errorMessage={this.state.errorMessage} />
+                    errorMessage={this.state.errorMessage}
+                    installMessage={this.state.installMessage} />
             </div>
         );
     }
 
+    // Update the UI based on the props received and log the user in if the shop parameter looks valid
+    private receiveProps(props: ILoginContainerProps): void {
+        // Get the shop parameter from the query string
+        const params = parseQueryString(props.location.search);
+        const shop = params.shop;
+        if (shop !== undefined) {
+            // Validate the shop domain and set the state
+            const errorMessage = this.shopErrorMessage(shop);
+            this.setState({
+                errorMessage,
+                shop,
+            });
+
+            // Iff there was no error message the attempt to login
+            if (errorMessage === undefined) {
+                this.doLogin(shop);
+            }
+        }
+    }
+
     // Obtain the OAuth URL and redirect the user to it.
     private doLogin(shop: string): void {
-        localStorage.setItem(SHOP_KEY, shop);
-        const callbackUrl =
-            `${window.location.protocol}//${window.location.hostname}:${window.location.port}/auth/shopify/callback`;
-        const variables: ShopifyAuthBeginMutationVariables = { shop, callbackUrl, perUser: false };
-        this.props.mutate({ variables })
-            .then((resp) => {
-                if (resp.data.shopifyAuthBegin === undefined || resp.data.shopifyAuthBegin === null) {
-                    this.setState({
-                        errorMessage: "API Call Failed.",
-                    });
-                    return;
-                }
-                localStorage.setItem(AUTH_TOKEN_KEY, resp.data.shopifyAuthBegin.token);
-                // If the current window is the 'parent', change the URL by setting location.href
-                if (window.top === window.self) {
-                    window.location.href = resp.data.shopifyAuthBegin.authUrl;
+        this.setState({
+            disableInstall: true,
+            installMessage: "Please wait...",
+        }, () => {
+            localStorage.setItem(SHOP_KEY, shop);
+            const callbackUrl =
+                `${window.location.protocol}//${window.location.hostname}:${window.location.port}`
+                + "/auth/shopify/callback";
+            const variables: ShopifyAuthBeginMutationVariables = { shop, callbackUrl, perUser: false };
+            this.props.mutate({ variables })
+                .then((resp) => {
+                    if (resp.data.shopifyAuthBegin === undefined || resp.data.shopifyAuthBegin === null) {
+                        this.setState({
+                            disableInstall: false,
+                            errorMessage: "API Call Failed.",
+                            installMessage: "Install",
+                        });
+                        return;
+                    }
+                    localStorage.setItem(AUTH_TOKEN_KEY, resp.data.shopifyAuthBegin.token);
+                    // If the current window is the 'parent', change the URL by setting location.href
+                    if (window.top === window.self) {
+                        window.location.href = resp.data.shopifyAuthBegin.authUrl;
 
-                    // If the current window is the 'child', change the parent's URL with postMessage
-                } else {
-                    const message = JSON.stringify({
-                        data: { location: window.location.origin + "?shop=" + shop },
-                        message: "Shopify.API.remoteRedirect",
+                        // If the current window is the 'child', change the parent's URL with postMessage
+                    } else {
+                        const message = JSON.stringify({
+                            data: { location: window.location.origin + "?shop=" + shop },
+                            message: "Shopify.API.remoteRedirect",
+                        });
+                        window.parent.postMessage(message, `https://${shop}`);
+                    }
+                })
+                .catch((err) => {
+                    console.error(err);
+                    this.setState({
+                        disableInstall: false,
+                        errorMessage: "API Call Failed.",
+                        installMessage: "Install",
                     });
-                    window.parent.postMessage(message, `https://${shop}`);
-                }
-            })
-            .catch((err) => {
-                console.error(err);
-                this.setState({
-                    errorMessage: "API Call Failed.",
                 });
-            });
+        });
     }
 
     // Update our state as the shop component changed
-    private handleChange(event: React.ChangeEvent<HTMLInputElement>): void {
-        event.preventDefault();
-        this.setState({ [event.target.name as keyof ILoginContainerState]: event.target.value } as any);
+    private handleChange(value: string, id: string): void {
+        this.setState({ [id as keyof ILoginContainerState]: value } as any);
     }
 
     // Returns the error message if the shop domain is invalid, otherwise null
-    private shopErrorMessage(shop: string): string | null {
+    private shopErrorMessage(shop: string): string | undefined {
         if (shop.match(/^[a-z][a-z0-9\-]*\.myshopify\.com$/i) == null) {
             return "Shop URL must end with .myshopify.com";
         }
-        return null;
+        return undefined;
     }
 
     // Validate the shop domain and attempt the OAuth process it there is no error
-    private handleSubmit(event: React.FormEvent<HTMLFormElement>): void {
-        event.preventDefault();
+    private handleSubmit(): void {
         const errorMessage = this.shopErrorMessage(this.state.shop);
         this.setState({
             errorMessage,
         });
-        if (errorMessage === null) {
+        if (errorMessage === undefined) {
             this.doLogin(this.state.shop);
         }
     }

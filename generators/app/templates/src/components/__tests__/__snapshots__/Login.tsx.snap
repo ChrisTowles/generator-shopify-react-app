@@ -2,144 +2,360 @@
 
 exports[`Renders correctly with error 1`] = `
 <main
-  className="container"
   role="main"
+  style={
+    Object {
+      "marginTop": "100px",
+    }
+  }
 >
-  <header>
-    <h1>
-      Shopify App — Installation
-    </h1>
+  <header
+    style={
+      Object {
+        "marginBottom": "50px",
+        "textAlign": "center",
+      }
+    }
+  >
     <p
-      className="subhead"
+      className="Polaris-DisplayText Polaris-DisplayText--sizeExtraLarge"
     >
-      <label
-        htmlFor="shop"
-      >
-        Please enter the “myshopify” domain of your store
-      </label>
+      Shopify App — Installation
     </p>
   </header>
   <div
-    className="container__form"
+    style={
+      Object {
+        "margin": "auto",
+        "width": "400px",
+      }
+    }
   >
     <div
-      className="alert error"
+      className="Polaris-FormLayout"
     >
-      <dl>
-        <dt>
-          Error Alert
-        </dt>
-        <dd>
-          Store domain name is wrong
-        </dd>
-      </dl>
-    </div>
-    <form
-      action="login"
-      method="GET"
-      onSubmit={[Function]}
-    >
-      <input
-        defaultValue="example.myshopify.comx"
-        name="shop"
-        onChange={[Function]}
-        placeholder="example.myshopify.com"
-        type="text"
-      />
-      <button
-        type="submit"
+      <div
+        className="Polaris-FormLayout__Item"
       >
-        Install
-      </button>
-    </form>
+        <div
+          className=""
+        >
+          <div
+            className="Polaris-Labelled__LabelWrapper"
+          >
+            <div
+              className="Polaris-Label"
+            >
+              <label
+                className="Polaris-Label__Text"
+                htmlFor="shop"
+                id="shopLabel"
+              >
+                Please enter the “myshopify” domain of your store
+              </label>
+            </div>
+          </div>
+          <div
+            className="Polaris-TextField Polaris-TextField--hasValue Polaris-TextField--error"
+          >
+            <input
+              aria-describedby="shopError"
+              aria-invalid={true}
+              aria-labelledby="shopLabel"
+              autoComplete={undefined}
+              autoFocus={undefined}
+              className="Polaris-TextField__Input"
+              disabled={undefined}
+              id="shop"
+              name="shop"
+              onBlur={undefined}
+              onChange={[Function]}
+              onFocus={undefined}
+              placeholder="example.myshopify.com"
+              readOnly={undefined}
+              style={null}
+              type={undefined}
+              value="example.myshopify.comx"
+            />
+            <div
+              className="Polaris-TextField__Backdrop"
+            />
+          </div>
+          <div
+            className="Polaris-Labelled__Error"
+            id="shopError"
+          >
+            <div
+              className="Polaris-Labelled__ErrorIcon"
+            >
+              <span
+                aria-label={undefined}
+                className="Polaris-Icon"
+              >
+                <svg
+                  className="Polaris-Icon__Svg"
+                  dangerouslySetInnerHTML={
+                    Object {
+                      "__html": "<path d=\\"M10 18a8 8 0 1 1 0-16 8 8 0 0 1 0 16zm-1-8h2V6H9v4zm0 4h2v-2H9v2z\\"  fill-rule=\\"evenodd\\"/>",
+                    }
+                  }
+                  viewBox="0 0 20 20"
+                />
+              </span>
+            </div>
+            Store domain name is wrong
+          </div>
+        </div>
+      </div>
+      <div
+        className="Polaris-FormLayout__Item"
+      >
+        <button
+          aria-busy={undefined}
+          aria-label={undefined}
+          className="Polaris-Button Polaris-Button--primary Polaris-Button--sizeLarge Polaris-Button--fullWidth"
+          disabled={undefined}
+          onBlur={undefined}
+          onClick={[Function]}
+          onFocus={undefined}
+          onMouseUp={[Function]}
+          role={undefined}
+          type="button"
+        >
+          <span
+            className="Polaris-Button__Content"
+          >
+            <span>
+              Install
+            </span>
+          </span>
+        </button>
+      </div>
+    </div>
   </div>
 </main>
 `;
 
 exports[`Renders correctly with no error or shop 1`] = `
 <main
-  className="container"
   role="main"
+  style={
+    Object {
+      "marginTop": "100px",
+    }
+  }
 >
-  <header>
-    <h1>
-      Shopify App — Installation
-    </h1>
+  <header
+    style={
+      Object {
+        "marginBottom": "50px",
+        "textAlign": "center",
+      }
+    }
+  >
     <p
-      className="subhead"
+      className="Polaris-DisplayText Polaris-DisplayText--sizeExtraLarge"
     >
-      <label
-        htmlFor="shop"
-      >
-        Please enter the “myshopify” domain of your store
-      </label>
+      Shopify App — Installation
     </p>
   </header>
   <div
-    className="container__form"
+    style={
+      Object {
+        "margin": "auto",
+        "width": "400px",
+      }
+    }
   >
-    <form
-      action="login"
-      method="GET"
-      onSubmit={[Function]}
+    <div
+      className="Polaris-FormLayout"
     >
-      <input
-        defaultValue=""
-        name="shop"
-        onChange={[Function]}
-        placeholder="example.myshopify.com"
-        type="text"
-      />
-      <button
-        type="submit"
+      <div
+        className="Polaris-FormLayout__Item"
       >
-        Install
-      </button>
-    </form>
+        <div
+          className=""
+        >
+          <div
+            className="Polaris-Labelled__LabelWrapper"
+          >
+            <div
+              className="Polaris-Label"
+            >
+              <label
+                className="Polaris-Label__Text"
+                htmlFor="shop"
+                id="shopLabel"
+              >
+                Please enter the “myshopify” domain of your store
+              </label>
+            </div>
+          </div>
+          <div
+            className="Polaris-TextField"
+          >
+            <input
+              aria-describedby={undefined}
+              aria-invalid={false}
+              aria-labelledby="shopLabel"
+              autoComplete={undefined}
+              autoFocus={undefined}
+              className="Polaris-TextField__Input"
+              disabled={undefined}
+              id="shop"
+              name="shop"
+              onBlur={undefined}
+              onChange={[Function]}
+              onFocus={undefined}
+              placeholder="example.myshopify.com"
+              readOnly={undefined}
+              style={null}
+              type={undefined}
+              value=""
+            />
+            <div
+              className="Polaris-TextField__Backdrop"
+            />
+          </div>
+        </div>
+      </div>
+      <div
+        className="Polaris-FormLayout__Item"
+      >
+        <button
+          aria-busy={undefined}
+          aria-label={undefined}
+          className="Polaris-Button Polaris-Button--primary Polaris-Button--sizeLarge Polaris-Button--fullWidth"
+          disabled={undefined}
+          onBlur={undefined}
+          onClick={[Function]}
+          onFocus={undefined}
+          onMouseUp={[Function]}
+          role={undefined}
+          type="button"
+        >
+          <span
+            className="Polaris-Button__Content"
+          >
+            <span>
+              Install
+            </span>
+          </span>
+        </button>
+      </div>
+    </div>
   </div>
 </main>
 `;
 
 exports[`Renders correctly with shop 1`] = `
 <main
-  className="container"
   role="main"
+  style={
+    Object {
+      "marginTop": "100px",
+    }
+  }
 >
-  <header>
-    <h1>
-      Shopify App — Installation
-    </h1>
+  <header
+    style={
+      Object {
+        "marginBottom": "50px",
+        "textAlign": "center",
+      }
+    }
+  >
     <p
-      className="subhead"
+      className="Polaris-DisplayText Polaris-DisplayText--sizeExtraLarge"
     >
-      <label
-        htmlFor="shop"
-      >
-        Please enter the “myshopify” domain of your store
-      </label>
+      Shopify App — Installation
     </p>
   </header>
   <div
-    className="container__form"
+    style={
+      Object {
+        "margin": "auto",
+        "width": "400px",
+      }
+    }
   >
-    <form
-      action="login"
-      method="GET"
-      onSubmit={[Function]}
+    <div
+      className="Polaris-FormLayout"
     >
-      <input
-        defaultValue="example.myshopify.com"
-        name="shop"
-        onChange={[Function]}
-        placeholder="example.myshopify.com"
-        type="text"
-      />
-      <button
-        type="submit"
+      <div
+        className="Polaris-FormLayout__Item"
       >
-        Install
-      </button>
-    </form>
+        <div
+          className=""
+        >
+          <div
+            className="Polaris-Labelled__LabelWrapper"
+          >
+            <div
+              className="Polaris-Label"
+            >
+              <label
+                className="Polaris-Label__Text"
+                htmlFor="shop"
+                id="shopLabel"
+              >
+                Please enter the “myshopify” domain of your store
+              </label>
+            </div>
+          </div>
+          <div
+            className="Polaris-TextField Polaris-TextField--hasValue"
+          >
+            <input
+              aria-describedby={undefined}
+              aria-invalid={false}
+              aria-labelledby="shopLabel"
+              autoComplete={undefined}
+              autoFocus={undefined}
+              className="Polaris-TextField__Input"
+              disabled={undefined}
+              id="shop"
+              name="shop"
+              onBlur={undefined}
+              onChange={[Function]}
+              onFocus={undefined}
+              placeholder="example.myshopify.com"
+              readOnly={undefined}
+              style={null}
+              type={undefined}
+              value="example.myshopify.com"
+            />
+            <div
+              className="Polaris-TextField__Backdrop"
+            />
+          </div>
+        </div>
+      </div>
+      <div
+        className="Polaris-FormLayout__Item"
+      >
+        <button
+          aria-busy={undefined}
+          aria-label={undefined}
+          className="Polaris-Button Polaris-Button--primary Polaris-Button--sizeLarge Polaris-Button--fullWidth"
+          disabled={undefined}
+          onBlur={undefined}
+          onClick={[Function]}
+          onFocus={undefined}
+          onMouseUp={[Function]}
+          role={undefined}
+          type="button"
+        >
+          <span
+            className="Polaris-Button__Content"
+          >
+            <span>
+              Install
+            </span>
+          </span>
+        </button>
+      </div>
+    </div>
   </div>
 </main>
 `;

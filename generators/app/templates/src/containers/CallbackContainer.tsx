@@ -56,10 +56,9 @@ class CallbackContainer extends React.Component<ICallbackContainerProps, ICallba
         return (
             <div className="application">
                 <Helmet>
-                    <link rel="stylesheet" href="/css/login.css" />
                     <title>Shopify App &mdash; Callback</title>
                 </Helmet>
-                <Callback errorMessage={this.state.errorMessage} />
+                <Callback errorMessage={this.state.errorMessage} loginUrl={`/login`} />
             </div>
         );
     }

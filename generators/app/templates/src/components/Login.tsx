@@ -1,37 +1,41 @@
+import { Button, DisplayText, FormLayout, TextField } from "@shopify/polaris";
 import * as React from "react";
 
+import * as styles from "./login.scss";
+
 interface ILoginProps {
-    handleSubmit: React.EventHandler<React.FormEvent<HTMLFormElement>>;
-    handleStoreChanged: React.EventHandler<React.ChangeEvent<HTMLInputElement>>;
-    errorMessage: string | null;
+    disableInstall: boolean;
+    handleSubmit: () => void;
+    handleStoreChanged: (value: string, id: string) => void;
+    errorMessage: string | undefined;
+    installMessage: string;
     shop: string;
 }
 
 export function Login(props: ILoginProps) {
-    const error =
-        props.errorMessage ?
-            <div className="alert error"><dl><dt>Error Alert</dt><dd>{props.errorMessage}</dd></dl></div>
-            : null;
     return (
-        <main className="container" role="main">
-            <header>
-                <h1>Shopify App — Installation</h1>
-                <p className="subhead">
-                    <label htmlFor="shop">Please enter the “myshopify” domain of your store</label>
-                </p>
+        <main role="main" className={styles.main}>
+            <header className={styles.header}>
+                <DisplayText size="extraLarge">Shopify App — Installation</DisplayText>
             </header>
-
-            <div className="container__form">
-                {error}
-                <form method="GET" action="login" onSubmit={props.handleSubmit}>
-                    <input
-                        type="text"
+            <div className={styles.form}>
+                <FormLayout>
+                    <TextField
+                        error={props.errorMessage}
+                        id="shop"
+                        label="Please enter the “myshopify” domain of your store"
                         name="shop"
+                        onChange={props.handleStoreChanged}
                         placeholder="example.myshopify.com"
-                        defaultValue={props.shop}
-                        onChange={props.handleStoreChanged} />
-                    <button type="submit">Install</button>
-                </form>
+                        value={props.shop}
+                    />
+                    <Button
+                        primary
+                        fullWidth
+                        onClick={props.handleSubmit}
+                        size="large"
+                        disabled={props.disableInstall}>{props.installMessage}</Button>
+                </FormLayout>
             </div>
         </main>
     );
