@@ -1,7 +1,7 @@
 import * as React from "react";
 import { graphql, MutationFunc, QueryProps } from "react-apollo";
 import { Helmet } from "react-helmet";
-import { Redirect, RouteComponentProps } from "react-router-dom";
+import { RouteComponentProps } from "react-router-dom";
 
 import { Callback } from "../components/Callback";
 import { parseQueryString } from "../lib/query-string";
@@ -15,6 +15,8 @@ import * as ShopifyAuthCompleteMutationGQL from "../graphql/ShopifyAuthCompleteM
 interface ICallbackContainerState {
     callbackSuccess: boolean;
     errorMessage: string | null;
+    shop: string | undefined;
+    sessionToken: string | undefined;
 }
 
 interface ICallbackContainerProps extends RouteComponentProps<{}> {
@@ -29,6 +31,8 @@ class CallbackContainer extends React.Component<ICallbackContainerProps, ICallba
         this.state = {
             callbackSuccess: false,
             errorMessage: null,
+            sessionToken: undefined,
+            shop: undefined,
         };
     }
 
@@ -42,6 +46,8 @@ class CallbackContainer extends React.Component<ICallbackContainerProps, ICallba
         this.setState({
             callbackSuccess: false,
             errorMessage: null,
+            sessionToken: undefined,
+            shop: undefined,
         });
         this.doCallback(parseQueryString(nextProps.location.search), localStorage.getItem(AUTH_TOKEN_KEY));
     }
@@ -50,7 +56,8 @@ class CallbackContainer extends React.Component<ICallbackContainerProps, ICallba
     // is successfull then we'll redirect to / otherwise we'll update the page to display the errorMessage
     public render(): JSX.Element {
         if (this.state.callbackSuccess) {
-            return <Redirect to="/" />;
+            // Use this instead of react-router for Safari
+            window.location.href = `/?_sh=${this.state.shop}&_st=${this.state.sessionToken}`;
         }
 
         return (
@@ -88,9 +95,12 @@ class CallbackContainer extends React.Component<ICallbackContainerProps, ICallba
                     });
                     return;
                 }
-                localStorage.setItem(TOKEN_KEY, resp.data.shopifyAuthComplete.token);
+                const sessionToken = resp.data.shopifyAuthComplete.token;
+                localStorage.setItem(TOKEN_KEY, sessionToken);
                 this.setState({
                     callbackSuccess: true,
+                    sessionToken,
+                    shop: querystring.shop,
                 });
             })
             .catch((err) => {

@@ -10,6 +10,7 @@ import { HomeContainer } from "../containers/HomeContainer";
 import { LoginContainerWithData } from "../containers/LoginContainer";
 import { LogoutContainerWithData } from "../containers/LogoutContainer";
 import { NotFoundContainer } from "../containers/NotFoundContainer";
+import { parseQueryString } from "../lib/query-string";
 
 declare const BASE_API_URL: string;
 declare const SHOP_KEY: string;
@@ -74,6 +75,18 @@ const store = createStore(
 // rest of the app should check that the user is authenticated and initialize the embedded app code if enabled
 export class App extends React.Component<{}, {}> {
     public render(): JSX.Element {
+        // Re-populate the SHOP_KEY and TOKEN_KEY local storage from the query string parameters if they are provided
+        // and we don't have them. This gets around Safari not making the available inside an iframe if set outside.
+        const {_sh, _st} = parseQueryString(window.location.search);
+        if (_sh !== undefined && _st !== undefined) {
+            if (localStorage.getItem(SHOP_KEY) === null) {
+                localStorage.setItem(SHOP_KEY, _sh);
+            }
+            if (localStorage.getItem(TOKEN_KEY) === null) {
+                localStorage.setItem(TOKEN_KEY, _st);
+            }
+        }
+
         const shop = localStorage.getItem(SHOP_KEY);
         const token = localStorage.getItem(TOKEN_KEY);
 
