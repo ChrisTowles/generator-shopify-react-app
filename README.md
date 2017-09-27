@@ -76,6 +76,9 @@ After doing that you can run the following command to rebuild `src/schema.ts` ba
 npm run update:schema
 ```
 
+# Generating *.(css|less|saas|scss).d.ts files
+The *.(css|less|saas|scss).d.ts files for your CSS/Less/SASS files aren't created by the generator. These files are automatically created by Webpack when it builds your application. If you're using VS Code you'll want these so that autocomplete will work in the browser. The easiest solution is to start the development server using `npm start`. This will build the `.d.ts` files for you and update them as you make changes to your source files.
+
 # GraphQL API
 
 If you are building your own GraphQL API it needs to respond to two mutations.
