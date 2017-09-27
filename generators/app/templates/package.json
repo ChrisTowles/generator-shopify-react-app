@@ -60,7 +60,7 @@
     "ts-jest": "^21.0.1",
     "tslint": "^5.7.0",
     "typescript": "^2.5.3",
-    "typings-for-css-modules-loader": "^1.6.0",
+    "typings-for-css-modules-loader": "^1.6.1",
     "webpack": "^3.6.0",
     "webpack-dev-server": "^2.8.2",
     "webpack-merge": "^4.1.0"
