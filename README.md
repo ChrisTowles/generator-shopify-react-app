@@ -79,6 +79,11 @@ npm run update:schema
 # Generating *.(css|less|saas|scss).d.ts files
 The *.(css|less|saas|scss).d.ts files for your CSS/Less/SASS files aren't created by the generator. These files are automatically created by Webpack when it builds your application. If you're using VS Code you'll want these so that autocomplete will work in the browser. The easiest solution is to start the development server using `npm start`. This will build the `.d.ts` files for you and update them as you make changes to your source files.
 
+# Generating favicon's
+The favicon's are generated automatically from `src/favicon.png` during the webpack build by favicons-webpack-plugin. To update your favicon replace this file with a large square PNG and the all of the smaller sizes will automatically be generated for you.
+
+__Note__ The default file is the Growing eCommerce logo. This is a Trade Mark of Growing eCommerce Pty Ltd and *MUST* be replace by your own logo before you release your application into production.
+
 # GraphQL API
 
 If you are building your own GraphQL API it needs to respond to two mutations.

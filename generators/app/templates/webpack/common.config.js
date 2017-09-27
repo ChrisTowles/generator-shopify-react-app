@@ -1,5 +1,6 @@
 const path = require("path");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
+const FaviconsWebpackPlugin = require("favicons-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = (extractCSS) => {
@@ -16,6 +17,12 @@ module.exports = (extractCSS) => {
             new HtmlWebpackPlugin({
                 title: "Shopify-React-App",
                 template: "src/index.ejs",
+            }),
+            new FaviconsWebpackPlugin({
+                logo: path.resolve(__dirname, "../src/favicon.png"),
+                prefix: "favicons/",
+                inject: true,
+                background: "#ffffff",
             }),
             new CopyWebpackPlugin([
                 { from: "static" },

@@ -81,6 +81,7 @@ module.exports = class extends Generator {
             "webpack/prod.config.js",
         ];
         const otherFiles = [
+            "src/favicon.png",
             "src/index.ejs",
             "dist/.gitkeep",
             "static/css/.gitkeep",
