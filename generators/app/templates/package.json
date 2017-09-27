@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack --config ./webpack/prod.config.js",
-    "clean": "rm -rf dist/*",
+    "clean": "rm -rf coverage/* dist/*",
     "lint": "tslint -c tslint.json -p tsconfig.json --type-check",
     "prebuild": "npm run clean && npm run lint",
     "pretest": "npm run build",
