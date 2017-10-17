@@ -50,6 +50,7 @@ module.exports = class extends Generator {
             "schema.json",
             "tsconfig.json",
             "tslint.json",
+            "jest/enzyme.js",
             "src/index.tsx",
             "src/schema.ts",
             "src/styles.global.scss",

@@ -5,7 +5,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = (extractCSS) => {
     return {
-        entry: ["./src/index.tsx"],
+        entry: ["babel-polyfill", "raf", "./src/index.tsx"],
 
         output: {
             filename: "bundle.js",
@@ -26,8 +26,6 @@ module.exports = (extractCSS) => {
             }),
             new CopyWebpackPlugin([
                 { from: "static" },
-                { from: "node_modules/react/dist/react.js", to: "js" },
-                { from: "node_modules/react-dom/dist/react-dom.js", to: "js" },
             ], {}),
             extractCSS,
         ],

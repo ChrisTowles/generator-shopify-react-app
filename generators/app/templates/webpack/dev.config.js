@@ -1,6 +1,7 @@
 const path = require("path");
 const webpack = require("webpack");
 const merge = require("webpack-merge");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const common = require("./common.config.js");
 
@@ -46,5 +47,9 @@ module.exports = merge(common(extractCSS), {
             // The key used to store our API authorization token in localStorage
             TOKEN_KEY: JSON.stringify("token")
         }),
+        new CopyWebpackPlugin([
+            { from: "node_modules/react/umd/react.development.js", to: "js/react.min.js" },
+            { from: "node_modules/react-dom/umd/react-dom.development.js", to: "js/react-dom.min.js" },
+        ], {}),
     ],
 });

@@ -1,3 +1,6 @@
+import "babel-polyfill";
+import "raf";
+
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 

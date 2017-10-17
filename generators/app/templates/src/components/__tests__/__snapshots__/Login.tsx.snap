@@ -43,6 +43,9 @@ exports[`Renders correctly with error 1`] = `
           </div>
           <div
             className="Polaris-TextField Polaris-TextField--hasValue Polaris-TextField--error"
+            onBlur={[Function]}
+            onClick={[Function]}
+            onFocus={[Function]}
           >
             <input
               aria-describedby="shopError"
@@ -165,6 +168,9 @@ exports[`Renders correctly with no error or shop 1`] = `
           </div>
           <div
             className="Polaris-TextField"
+            onBlur={[Function]}
+            onClick={[Function]}
+            onFocus={[Function]}
           >
             <input
               aria-describedby={undefined}
@@ -263,6 +269,9 @@ exports[`Renders correctly with shop 1`] = `
           </div>
           <div
             className="Polaris-TextField Polaris-TextField--hasValue"
+            onBlur={[Function]}
+            onClick={[Function]}
+            onFocus={[Function]}
           >
             <input
               aria-describedby={undefined}
