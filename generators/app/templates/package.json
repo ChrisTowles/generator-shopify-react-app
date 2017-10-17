@@ -42,7 +42,7 @@
     "@types/react-test-renderer": "^15.5.4",
     "apollo-codegen": "^0.16.5",
     "awesome-typescript-loader": "^3.2.3",
-    "copy-webpack-plugin": "^4.0.1",
+    "copy-webpack-plugin": "^4.1.1",
     "css-loader": "^0.28.7",
     "enzyme": "^2.9.1",
     "extract-text-webpack-plugin": "^3.0.0",
