@@ -3,9 +3,10 @@ import * as React from "react";
 import { Helmet } from "react-helmet";
 import { RouteComponentProps } from "react-router-dom";
 
-export class NotFoundContainer extends React.Component<RouteComponentProps<undefined>, any> {
-    constructor(props: RouteComponentProps<undefined>) {
+export class NotFoundContainer extends React.Component<RouteComponentProps<{}>, {}> {
+    constructor(props: RouteComponentProps<{}>) {
         super(props);
+        this.state = {};
     }
 
     // Renders a demo homepage. The only import thing here is using Helmet to replace the stylesheet with the
