@@ -24,7 +24,7 @@
   },
   "homepage": "https://github.com/buggy/generator-shopify-react-app#readme",
   "dependencies": {
-    "@shopify/polaris": "^1.6.0",
+    "@shopify/polaris": "^1.7.0",
     "react": "^15.6.1",
     "react-apollo": "^1.4.16",
     "react-dom": "^15.6.1",
