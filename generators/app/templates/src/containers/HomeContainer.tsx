@@ -8,8 +8,8 @@ interface IHomeContainerState {
     showModal: boolean;
 }
 
-export class HomeContainer extends React.Component<RouteComponentProps<undefined>, IHomeContainerState> {
-    constructor(props: RouteComponentProps<undefined>) {
+export class HomeContainer extends React.Component<RouteComponentProps<{}>, IHomeContainerState> {
+    constructor(props: RouteComponentProps<{}>) {
         super(props);
         this.state = {
             showModal: false,

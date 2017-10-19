@@ -1,19 +1,20 @@
 import * as React from "react";
 import { ApolloClient, withApollo } from "react-apollo";
 import { Helmet } from "react-helmet";
-import { Redirect } from "react-router";
+import { RouteComponentProps } from "react-router";
 
 declare const AUTH_TOKEN_KEY: string;
 declare const SHOP_KEY: string;
 declare const TOKEN_KEY: string;
 
-interface ILogoutContainerProps {
+interface ILogoutContainerProps extends RouteComponentProps<{}> {
     client: ApolloClient;
 }
 
-class LogoutContainer extends React.Component<ILogoutContainerProps, undefined> {
+class LogoutContainer extends React.Component<ILogoutContainerProps, {}> {
     constructor(props: ILogoutContainerProps) {
         super(props);
+        this.state = {};
     }
 
     public render(): JSX.Element {
@@ -24,6 +25,7 @@ class LogoutContainer extends React.Component<ILogoutContainerProps, undefined> 
         localStorage.removeItem(SHOP_KEY);
 
         this.props.client.resetStore();
+        this.props.history.replace("/login");
 
         // Redirect the user to login page
         return (
@@ -31,7 +33,6 @@ class LogoutContainer extends React.Component<ILogoutContainerProps, undefined> 
                 <Helmet>
                     <title>Shopify App &mdash; Logout</title>
                 </Helmet>
-                <Redirect to="/login" />
             </div>
         );
     }
