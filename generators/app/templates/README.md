@@ -5,7 +5,7 @@ Yeoman is a scaffolding system for quickly creating many kinds of apps. This Yeo
 To use this starter kit you need to install Yeoman. If you don't already have Yeoman installed then run
 
 ```sh
-npm install yeoman -g
+npm install yo -g
 ```
 
 You should then install the Shopify React Starter generator for Yeoman
@@ -118,6 +118,15 @@ When the user presents an expired or invalid authorization token the GraphQL API
 
 ## Refreshng Tokens
 If the GraphQL API returns a `x-new-token` header in the response then the client will automatically replace the authorization token stored in localStorage with the new token. This allows the GraphQL API to refresh the token automatically for users. By using this you can keep token lifetimes short while still allowing the users to stay logged in for extended periods providing they are active.
+
+# Releases
+From version 5.0 this project will follow a new release number schema based on [semver](http://semver.org/).
+
+- Major releases 6.0, 7.0, 8.0 etc will become the norm. These releases will include new features, updated dependencies (production and development) and other code changes.
+- Minor releases 6.x, 7.x, 8.x etc will occur when Shopify releases a point upgrade to [Polaris](https://github.com/shopify/polaris). These releases will only include the updated Polaris. This will allow us to keep Polaris up to date without needing to do major a release.
+- Bug releases 6.x.y, 7.x.y, 8.x.y etc will be released as required
+
+See the [release notes](https://github.com/buggy/generator-shopify-react-app/wiki/ReleaseNotes) for more information.
 
 # Copyright
 This project copyright 2017 Rich Buggy & [Growing eCommerce Pty Ltd](http://www.growingecommerce.com). See the LICENCE file for information about using and distributing this project.
