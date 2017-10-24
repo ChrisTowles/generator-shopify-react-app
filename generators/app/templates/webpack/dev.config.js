@@ -48,8 +48,8 @@ module.exports = merge(common(extractCSS), {
             TOKEN_KEY: JSON.stringify("token")
         }),
         new CopyWebpackPlugin([
-            { from: "node_modules/react/umd/react.development.js", to: "js/react.min.js" },
-            { from: "node_modules/react-dom/umd/react-dom.development.js", to: "js/react-dom.min.js" },
+            { from: "node_modules/react/umd/react.development.js", to: "js/react.js" },
+            { from: "node_modules/react-dom/umd/react-dom.development.js", to: "js/react-dom.js" },
         ], {}),
     ],
 });
