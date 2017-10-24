@@ -5,7 +5,7 @@ Yeoman is a scaffolding system for quickly creating many kinds of apps. This Yeo
 To use this starter kit you need to install Yeoman. If you don't already have Yeoman installed then run
 
 ```sh
-npm install yeoman -g
+npm install yo -g
 ```
 
 You should then install the Shopify React Starter generator for Yeoman
