@@ -1,7 +1,7 @@
 import * as React from "react";
 import { ApolloClient, ApolloProvider, createNetworkInterface } from "react-apollo";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import { applyMiddleware, combineReducers, compose, createStore } from "redux";
+import { applyMiddleware, combineReducers, compose, createStore, Reducer } from "redux";
 
 import { CheckAuth } from "../components/CheckAuth";
 import { CallbackContainerWithData } from "../containers/CallbackContainer";
@@ -27,9 +27,11 @@ networkInterface.use([{
         const token = localStorage.getItem(TOKEN_KEY);
         if (token) {
             if (!req.options.headers) {
+                // @ts-ignore
                 req.options.headers = {};  // Create the header object if needed.
             }
             // get the authentication token from local storage if it exists
+            // @ts-ignore
             req.options.headers.authorization = `Bearer ${token}`;
         }
         next();
@@ -61,14 +63,14 @@ const client = new ApolloClient({
 
 // Create the redux store
 const store = createStore(
-  combineReducers({
-    apollo: client.reducer(),
-  }),
-  {}, // initial state
-  compose(
-      applyMiddleware(client.middleware()),
-      // If you are using the devToolsExtension, you can add it here also
-  ),
+    combineReducers({
+        apollo: client.reducer() as Reducer<any>,
+    }),
+    {}, // initial state
+    compose(
+        applyMiddleware(client.middleware()),
+        // If you are using the devToolsExtension, you can add it here also
+    ),
 );
 
 // This is the routing for our app. /login, /logout and /auth/shopify/callback should all be unauthenticated. The
@@ -77,7 +79,7 @@ export class App extends React.Component<{}, {}> {
     public render(): JSX.Element {
         // Re-populate the SHOP_KEY and TOKEN_KEY local storage from the query string parameters if they are provided
         // and we don't have them. This gets around Safari not making the available inside an iframe if set outside.
-        const {_sh, _st} = parseQueryString(window.location.search);
+        const { _sh, _st } = parseQueryString(window.location.search);
         if (_sh !== undefined && _st !== undefined) {
             if (localStorage.getItem(SHOP_KEY) === null) {
                 localStorage.setItem(SHOP_KEY, _sh);
