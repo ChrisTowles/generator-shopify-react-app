@@ -1,3 +1,4 @@
+import { ConnectedFlagsProvider, createFlagsReducer } from "flag";
 import * as React from "react";
 import { ApolloClient, ApolloProvider, createNetworkInterface } from "react-apollo";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
@@ -65,6 +66,7 @@ const client = new ApolloClient({
 const store = createStore(
     combineReducers({
         apollo: client.reducer() as Reducer<any>,
+        flags: createFlagsReducer({}),
     }),
     {}, // initial state
     compose(
@@ -94,21 +96,23 @@ export class App extends React.Component<{}, {}> {
 
         return (
             <ApolloProvider client={client} store={store}>
-                <BrowserRouter>
-                    <Switch>
-                        <Route path="/login" component={LoginContainerWithData} />
-                        <Route path="/logout" component={LogoutContainerWithData} />
-                        <Route path="/auth/shopify/callback" component={CallbackContainerWithData} />
-                        <CheckAuth shop={shop} token={token}>
-                            <EmbeddedAppContainer>
-                                <Switch>
-                                    <Route exact path="/" component={HomeContainer} />
-                                    <Route component={NotFoundContainer} />
-                                </Switch>
-                            </EmbeddedAppContainer>
-                        </CheckAuth>
-                    </Switch>
-                </BrowserRouter>
+                <ConnectedFlagsProvider>
+                    <BrowserRouter>
+                        <Switch>
+                            <Route path="/login" component={LoginContainerWithData} />
+                            <Route path="/logout" component={LogoutContainerWithData} />
+                            <Route path="/auth/shopify/callback" component={CallbackContainerWithData} />
+                            <CheckAuth shop={shop} token={token}>
+                                <EmbeddedAppContainer>
+                                    <Switch>
+                                        <Route exact path="/" component={HomeContainer} />
+                                        <Route component={NotFoundContainer} />
+                                    </Switch>
+                                </EmbeddedAppContainer>
+                            </CheckAuth>
+                        </Switch>
+                    </BrowserRouter>
+                </ConnectedFlagsProvider>
             </ApolloProvider>
         );
     }

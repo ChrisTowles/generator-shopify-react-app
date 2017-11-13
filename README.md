@@ -119,6 +119,9 @@ When the user presents an expired or invalid authorization token the GraphQL API
 ## Refreshng Tokens
 If the GraphQL API returns a `x-new-token` header in the response then the client will automatically replace the authorization token stored in localStorage with the new token. This allows the GraphQL API to refresh the token automatically for users. By using this you can keep token lifetimes short while still allowing the users to stay logged in for extended periods providing they are active.
 
+# Feature Flags
+Feature flags are supported using the [Flags](https://github.com/unbounce/flag) package by Unbounce. Our implementation supports React-Redux. Simply set the initial state of the flags in `src/routes/App.tsx` then update them by dispatching `setFlagsAction`. See the Flags documentation for more information.
+
 # Releases
 From version 5.0 this project will follow a new release number schema based on [semver](http://semver.org/).
 
