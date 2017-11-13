@@ -32,4 +32,3 @@ export type ShopifyAuthCompleteMutation = {
     token: string,
   } | null,
 };
-/* tslint:enable */
