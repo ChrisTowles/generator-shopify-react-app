@@ -1,6 +1,8 @@
 import { Banner, DisplayText } from "@shopify/polaris";
 import * as React from "react";
 
+import { Spinner } from "./spinner/spinner";
+
 import * as styles from "./callback.scss";
 
 interface ICallbackProps {
@@ -13,12 +15,15 @@ export function Callback(props: ICallbackProps) {
         <Banner
             title="Authentication Error"
             status="critical"
-            action={{ content: "Try again", url: props.loginUrl}}
+            action={{ content: "Try again", url: props.loginUrl }}
         >
             <p>{props.errorMessage}</p>
         </Banner>
     ) : (
-            <p>Redirecting, please wait...</p>
+            <div>
+                <Spinner />
+                <p>Redirecting, please wait...</p>
+            </div>
         );
     return (
         <main role="main" className={styles.main}>

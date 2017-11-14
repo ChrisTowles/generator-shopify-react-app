@@ -59,6 +59,8 @@ module.exports = class extends Generator {
             "src/components/CheckAuth.tsx",
             "src/components/login.scss",
             "src/components/Login.tsx",
+            "src/components/spinner/spinner.scss",
+            "src/components/spinner/spinner.tsx",
             "src/components/__tests__/Callback.tsx",
             "src/components/__tests__/CheckAuth.tsx",
             "src/components/__tests__/Login.tsx",

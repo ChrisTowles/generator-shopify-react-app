@@ -1,6 +1,8 @@
 import { Button, DisplayText, FormLayout, TextField } from "@shopify/polaris";
 import * as React from "react";
 
+import { Spinner } from "./spinner/spinner";
+
 import * as styles from "./login.scss";
 
 interface ILoginProps {
@@ -31,6 +33,7 @@ export function Login(props: ILoginProps) {
                             placeholder="example.myshopify.com"
                             value={props.shop}
                         />
+                        {props.disableInstall && <Spinner />}
                         <Button
                             primary
                             fullWidth
