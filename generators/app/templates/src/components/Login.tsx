@@ -5,7 +5,7 @@ import * as styles from "./login.scss";
 
 interface ILoginProps {
     disableInstall: boolean;
-    handleSubmit: () => void;
+    handleSubmit: (evt: React.FormEvent<HTMLFormElement>) => void;
     handleStoreChanged: (value: string, id: string) => void;
     errorMessage: string | undefined;
     installMessage: string;
@@ -19,23 +19,26 @@ export function Login(props: ILoginProps) {
                 <DisplayText size="extraLarge">Shopify App — Installation</DisplayText>
             </header>
             <div className={styles.form}>
-                <FormLayout>
-                    <TextField
-                        error={props.errorMessage}
-                        id="shop"
-                        label="Please enter the “myshopify” domain of your store"
-                        name="shop"
-                        onChange={props.handleStoreChanged}
-                        placeholder="example.myshopify.com"
-                        value={props.shop}
-                    />
-                    <Button
-                        primary
-                        fullWidth
-                        onClick={props.handleSubmit}
-                        size="large"
-                        disabled={props.disableInstall}>{props.installMessage}</Button>
-                </FormLayout>
+                <form onSubmit={props.handleSubmit}>
+                    <FormLayout>
+                        <TextField
+                            autoFocus
+                            error={props.errorMessage}
+                            id="shop"
+                            label="Please enter the “myshopify” domain of your store"
+                            name="shop"
+                            onChange={props.handleStoreChanged}
+                            placeholder="example.myshopify.com"
+                            value={props.shop}
+                        />
+                        <Button
+                            primary
+                            fullWidth
+                            size="large"
+                            submit
+                            disabled={props.disableInstall}>{props.installMessage}</Button>
+                    </FormLayout>
+                </form>
             </div>
         </main>
     );

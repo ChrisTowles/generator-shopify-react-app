@@ -147,7 +147,8 @@ class LoginContainer extends React.Component<ILoginContainerProps, ILoginContain
     }
 
     // Validate the shop domain and attempt the OAuth process it there is no error
-    private handleSubmit(): void {
+    private handleSubmit(evt: React.FormEvent<HTMLFormElement>): void {
+        evt.preventDefault();
         const errorMessage = this.shopErrorMessage(this.state.shop);
         this.setState({
             errorMessage,
