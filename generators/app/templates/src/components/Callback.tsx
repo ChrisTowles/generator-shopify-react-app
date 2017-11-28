@@ -1,9 +1,9 @@
 import { Banner, DisplayText } from "@shopify/polaris";
 import * as React from "react";
 
-import { Spinner } from "./spinner/spinner";
+import { Spinner } from "./Spinner";
 
-import * as styles from "./callback.scss";
+import * as styles from "./Callback.scss";
 
 interface ICallbackProps {
     errorMessage: string | null;

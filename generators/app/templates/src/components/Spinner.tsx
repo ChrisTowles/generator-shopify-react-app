@@ -1,7 +1,7 @@
 import { Spinner as PolarisSpinner } from "@shopify/polaris";
 import * as React from "react";
 
-import * as styles from "./spinner.scss";
+import * as styles from "./Spinner.scss";
 
 export function Spinner() {
     return (

@@ -1,9 +1,9 @@
 import { Button, DisplayText, FormLayout, TextField } from "@shopify/polaris";
 import * as React from "react";
 
-import { Spinner } from "./spinner/spinner";
+import { Spinner } from "./Spinner";
 
-import * as styles from "./login.scss";
+import * as styles from "./Login.scss";
 
 interface ILoginProps {
     disableInstall: boolean;
