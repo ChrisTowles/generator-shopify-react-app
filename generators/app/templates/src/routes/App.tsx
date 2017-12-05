@@ -11,6 +11,7 @@ import { HomeContainer } from "../containers/HomeContainer";
 import { LoginContainerWithData } from "../containers/LoginContainer";
 import { LogoutContainerWithData } from "../containers/LogoutContainer";
 import { NotFoundContainer } from "../containers/NotFoundContainer";
+import { UnexpectedErrorContainer } from "../containers/UnexpectedErrorContainer";
 import { parseQueryString } from "../lib/query-string";
 
 declare const BASE_API_URL: string;
@@ -98,25 +99,27 @@ export class App extends React.Component<{}, {}> {
         const token = localStorage.getItem(TOKEN_KEY);
 
         return (
-            <ApolloProvider client={client} store={store}>
-                <ConnectedFlagsProvider>
-                    <BrowserRouter>
-                        <Switch>
-                            <Route path="/login" component={LoginContainerWithData} />
-                            <Route path="/logout" component={LogoutContainerWithData} />
-                            <Route path="/auth/shopify/callback" component={CallbackContainerWithData} />
-                            <CheckAuth shop={shop} token={token}>
-                                <EmbeddedAppContainer>
-                                    <Switch>
-                                        <Route exact path="/" component={HomeContainer} />
-                                        <Route component={NotFoundContainer} />
-                                    </Switch>
-                                </EmbeddedAppContainer>
-                            </CheckAuth>
-                        </Switch>
-                    </BrowserRouter>
-                </ConnectedFlagsProvider>
-            </ApolloProvider>
+            <UnexpectedErrorContainer>
+                <ApolloProvider client={client} store={store}>
+                    <ConnectedFlagsProvider>
+                        <BrowserRouter>
+                            <Switch>
+                                <Route path="/login" component={LoginContainerWithData} />
+                                <Route path="/logout" component={LogoutContainerWithData} />
+                                <Route path="/auth/shopify/callback" component={CallbackContainerWithData} />
+                                <CheckAuth shop={shop} token={token}>
+                                    <EmbeddedAppContainer>
+                                        <Switch>
+                                            <Route exact path="/" component={HomeContainer} />
+                                            <Route component={NotFoundContainer} />
+                                        </Switch>
+                                    </EmbeddedAppContainer>
+                                </CheckAuth>
+                            </Switch>
+                        </BrowserRouter>
+                    </ConnectedFlagsProvider>
+                </ApolloProvider>
+            </UnexpectedErrorContainer>
         );
     }
 }

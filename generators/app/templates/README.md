@@ -122,6 +122,9 @@ If the GraphQL API returns a `x-new-token` header in the response then the clien
 # Feature Flags
 Feature flags are supported using the [Flags](https://github.com/unbounce/flag) package by Unbounce. Our implementation supports React-Redux. Simply set the initial state of the flags in `src/routes/App.tsx` then update them by dispatching `setFlagsAction`. See the Flags documentation for more information.
 
+# Logging Errors
+In productions apps you will frequently want to use a remote logging service to track errors the client is experiencing. The easily be added in `src/containers/UnexpectedErrorContainer.tsx` which is the error boundary component wrapped around the entire application. To add logging open that file and replace `// ADD REMOTE LOGGING HERE` with the code to log errors.
+
 # Releases
 From version 5.0 this project will follow a new release number schema based on [semver](http://semver.org/).
 
