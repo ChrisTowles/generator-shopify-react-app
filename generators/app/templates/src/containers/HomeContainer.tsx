@@ -3,12 +3,14 @@ import { Alert } from "@shopify/polaris/embedded";
 import * as React from "react";
 import { RouteComponentProps } from "react-router-dom";
 
+import { IWithShopProps } from "../hoc/withShop";
+
 interface IHomeContainerState {
     showModal: boolean;
 }
 
-export class HomeContainer extends React.Component<RouteComponentProps<{}>, IHomeContainerState> {
-    constructor(props: RouteComponentProps<{}>) {
+export class HomeContainer extends React.Component<RouteComponentProps<{}> & IWithShopProps, IHomeContainerState> {
+    constructor(props: RouteComponentProps<{}> & IWithShopProps) {
         super(props);
         this.state = {
             showModal: false,

@@ -2,8 +2,10 @@ import { EmptyState, Page } from "@shopify/polaris";
 import * as React from "react";
 import { RouteComponentProps } from "react-router-dom";
 
-export class NotFoundContainer extends React.Component<RouteComponentProps<{}>, {}> {
-    constructor(props: RouteComponentProps<{}>) {
+import { IWithShopProps } from "../hoc/withShop";
+
+export class NotFoundContainer extends React.Component<RouteComponentProps<{}> & IWithShopProps, {}> {
+    constructor(props: RouteComponentProps<{}> & IWithShopProps) {
         super(props);
         this.state = {};
     }
