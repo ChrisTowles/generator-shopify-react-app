@@ -1,7 +1,6 @@
 import { Card, DisplayText, FooterHelp, Page, Subheading } from "@shopify/polaris";
 import { Alert } from "@shopify/polaris/embedded";
 import * as React from "react";
-import { Helmet } from "react-helmet";
 import { RouteComponentProps } from "react-router-dom";
 
 interface IHomeContainerState {
@@ -18,14 +17,12 @@ export class HomeContainer extends React.Component<RouteComponentProps<{}>, IHom
         this.hideModal = this.hideModal.bind(this);
     }
 
-    // Renders a demo homepage. The only import thing here is using Helmet to replace the stylesheet with the
-    // stylesheet for Polaris.
+    // Renders a demo homepage
     public render(): JSX.Element {
+        document.title = "Shopify App — Home";
+
         return (
             <div className="application">
-                <Helmet>
-                    <title>Shopify App &mdash; Home</title>
-                </Helmet>
                 <Page title="Example application" primaryAction={{ content: "Save", onAction: this.handleSave }}>
 
                     <Card sectioned>

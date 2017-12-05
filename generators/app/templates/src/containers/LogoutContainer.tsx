@@ -1,6 +1,5 @@
 import * as React from "react";
 import { ApolloClient, withApollo } from "react-apollo";
-import { Helmet } from "react-helmet";
 import { RouteComponentProps } from "react-router";
 
 declare const AUTH_TOKEN_KEY: string;
@@ -17,6 +16,7 @@ class LogoutContainer extends React.Component<ILogoutContainerProps, {}> {
         this.state = {};
     }
 
+    // Renders the logout page
     public render(): JSX.Element {
         // Remove the token and shop from our session storage. These are used by the CheckAuth to determine if someone
         // is logged in
@@ -27,13 +27,11 @@ class LogoutContainer extends React.Component<ILogoutContainerProps, {}> {
         this.props.client.resetStore();
         this.props.history.replace("/login");
 
+        document.title = "Shopify App — Logout";
+
         // Redirect the user to login page
         return (
-            <div className="application">
-                <Helmet>
-                    <title>Shopify App &mdash; Logout</title>
-                </Helmet>
-            </div>
+            <div className="application" />
         );
     }
 }

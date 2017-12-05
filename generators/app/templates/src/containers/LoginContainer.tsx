@@ -1,6 +1,5 @@
 import * as React from "react";
 import { graphql, MutationFunc, QueryProps } from "react-apollo";
-import { Helmet } from "react-helmet";
 import { RouteComponentProps } from "react-router";
 
 import { Login } from "../components/Login";
@@ -46,16 +45,16 @@ class LoginContainer extends React.Component<ILoginContainerProps, ILoginContain
         this.receiveProps(nextProps);
     }
 
-    // Render the login component
+    // Render the login page
     public render(): JSX.Element {
         if (window.top !== window.self) {
             window.top.location.href = window.self.location.href;
         }
+
+        document.title = "Shopify App — Installation";
+
         return (
             <div className="application">
-                <Helmet>
-                    <title>Shopify App &mdash; Installation</title>
-                </Helmet>
                 <Login
                     shop={this.state.shop}
                     disableInstall={this.state.disableInstall}

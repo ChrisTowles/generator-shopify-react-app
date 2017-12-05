@@ -1,6 +1,5 @@
 import * as React from "react";
 import { graphql, MutationFunc, QueryProps } from "react-apollo";
-import { Helmet } from "react-helmet";
 import { RouteComponentProps } from "react-router-dom";
 
 import { Callback } from "../components/Callback";
@@ -60,11 +59,10 @@ class CallbackContainer extends React.Component<ICallbackContainerProps, ICallba
             window.location.href = `/?_sh=${this.state.shop}&_st=${this.state.sessionToken}`;
         }
 
+        document.title = "Shopify App — Callback";
+
         return (
             <div className="application">
-                <Helmet>
-                    <title>Shopify App &mdash; Callback</title>
-                </Helmet>
                 <Callback errorMessage={this.state.errorMessage} loginUrl={`/login`} />
             </div>
         );

@@ -1,6 +1,5 @@
 import { EmptyState, Page } from "@shopify/polaris";
 import * as React from "react";
-import { Helmet } from "react-helmet";
 import { RouteComponentProps } from "react-router-dom";
 
 export class NotFoundContainer extends React.Component<RouteComponentProps<{}>, {}> {
@@ -9,14 +8,12 @@ export class NotFoundContainer extends React.Component<RouteComponentProps<{}>, 
         this.state = {};
     }
 
-    // Renders a demo homepage. The only import thing here is using Helmet to replace the stylesheet with the
-    // stylesheet for Polaris.
+    // Renders the not found page
     public render(): JSX.Element {
+        document.title = "Shopify App — Page Not Found";
+
         return (
             <div className="application">
-                <Helmet>
-                    <title>Shopify App &mdash; Page Not Found</title>
-                </Helmet>
                 <Page title="Page Not Found">
                     <EmptyState
                         heading="Page Not Found"
