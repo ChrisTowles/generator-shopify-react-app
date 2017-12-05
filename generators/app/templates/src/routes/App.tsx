@@ -62,6 +62,9 @@ const client = new ApolloClient({
     networkInterface,
 });
 
+// @ts-ignore
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
 // Create the redux store
 const store = createStore(
     combineReducers({
@@ -69,7 +72,7 @@ const store = createStore(
         flags: createFlagsReducer({}),
     }),
     {}, // initial state
-    compose(
+    composeEnhancers(
         applyMiddleware(client.middleware()),
         // If you are using the devToolsExtension, you can add it here also
     ),
