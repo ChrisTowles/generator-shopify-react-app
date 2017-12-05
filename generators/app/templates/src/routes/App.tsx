@@ -5,12 +5,12 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { applyMiddleware, combineReducers, compose, createStore, Reducer } from "redux";
 
 import { CallbackContainerWithData } from "../containers/CallbackContainer";
-import { EmbeddedAppContainer } from "../containers/EmbeddedAppContainer";
 import { HomeContainer } from "../containers/HomeContainer";
 import { LoginContainerWithData } from "../containers/LoginContainer";
 import { LogoutContainerWithData } from "../containers/LogoutContainer";
 import { NotFoundContainer } from "../containers/NotFoundContainer";
 import { UnexpectedErrorContainer } from "../containers/UnexpectedErrorContainer";
+import { withEmbeddedApp } from "../hoc/withEmbeddedApp";
 import { withShop } from "../hoc/withShop";
 import { parseQueryString } from "../lib/query-string";
 
@@ -104,12 +104,10 @@ export class App extends React.Component<{}, {}> {
                                 <Route path="/login" component={LoginContainerWithData} />
                                 <Route path="/logout" component={LogoutContainerWithData} />
                                 <Route path="/auth/shopify/callback" component={CallbackContainerWithData} />
-                                <EmbeddedAppContainer>
-                                    <Switch>
-                                        <Route exact path="/" component={withShop(HomeContainer)} />
-                                        <Route component={withShop(NotFoundContainer)} />
-                                    </Switch>
-                                </EmbeddedAppContainer>
+                                <Switch>
+                                    <Route exact path="/" component={withShop(withEmbeddedApp(HomeContainer))} />
+                                    <Route component={withShop(withEmbeddedApp(NotFoundContainer))} />
+                                </Switch>
                             </Switch>
                         </BrowserRouter>
                     </ConnectedFlagsProvider>
