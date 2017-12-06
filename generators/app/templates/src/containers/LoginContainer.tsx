@@ -35,14 +35,27 @@ class LoginContainer extends React.Component<ILoginContainerProps, ILoginContain
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        console.log("constructor()");
     }
 
+    // Once the component has mounted we should check to see if the shop query string parameter was provided and
+    // automatically log into that store.
     public componentDidMount(): void {
-        this.receiveProps(this.props);
-    }
+        const params = parseQueryString(this.props.location.search);
+        const shop = params.shop;
+        if (shop !== undefined) {
+            // Validate the shop domain and set the state
+            const errorMessage = this.shopErrorMessage(shop);
+            this.setState({
+                errorMessage,
+                shop,
+            });
 
-    public componentWillReceiveProps(nextProps: ILoginContainerProps): void {
-        this.receiveProps(nextProps);
+            // Iff there was no error message the attempt to login
+            if (errorMessage === undefined) {
+                this.doLogin(shop);
+            }
+        }
     }
 
     // Render the login page
@@ -64,26 +77,6 @@ class LoginContainer extends React.Component<ILoginContainerProps, ILoginContain
                     installMessage={this.state.installMessage} />
             </div>
         );
-    }
-
-    // Update the UI based on the props received and log the user in if the shop parameter looks valid
-    private receiveProps(props: ILoginContainerProps): void {
-        // Get the shop parameter from the query string
-        const params = parseQueryString(props.location.search);
-        const shop = params.shop;
-        if (shop !== undefined) {
-            // Validate the shop domain and set the state
-            const errorMessage = this.shopErrorMessage(shop);
-            this.setState({
-                errorMessage,
-                shop,
-            });
-
-            // Iff there was no error message the attempt to login
-            if (errorMessage === undefined) {
-                this.doLogin(shop);
-            }
-        }
     }
 
     // Obtain the OAuth URL and redirect the user to it.

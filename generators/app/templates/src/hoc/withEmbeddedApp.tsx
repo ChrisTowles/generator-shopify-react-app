@@ -10,7 +10,7 @@ declare const SHOPIFY_API_KEY: string;
 // page, otherwise display the children
 export function withEmbeddedApp<P extends IWithShopProps>(
     WrappedComponent: React.ComponentClass<P> | React.StatelessComponent<P>): React.ComponentClass<P> {
-    return class HomeContainer extends React.Component<P> {
+    return class WithEmbeddedApp extends React.Component<P> {
         constructor(props: P) {
             super(props);
         }
@@ -22,7 +22,7 @@ export function withEmbeddedApp<P extends IWithShopProps>(
                         apiKey={SHOPIFY_API_KEY}
                         shopOrigin={`https://${this.props.shop}`}
                         forceRedirect={true}>
-                        <WrappedComponent {...this.props} />;
+                        <WrappedComponent {...this.props} />
                     </EmbeddedApp>
                 );
             }

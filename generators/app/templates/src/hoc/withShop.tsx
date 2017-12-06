@@ -12,7 +12,7 @@ export interface IWithShopProps {
 // page, otherwise display the children
 export function withShop<P extends IWithShopProps>(
     WrappedComponent: React.ComponentClass<P> | React.StatelessComponent<P>): React.ComponentClass<P> {
-    return class HomeContainer extends React.Component<P> {
+    return class WithShop extends React.Component<P> {
         constructor(props: P) {
             super(props);
         }
