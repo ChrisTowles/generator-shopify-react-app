@@ -1,5 +1,6 @@
+import { ApolloClient } from "apollo-client-preset";
 import * as React from "react";
-import { ApolloClient, withApollo } from "react-apollo";
+import { withApollo } from "react-apollo";
 import { RouteComponentProps } from "react-router";
 
 declare const AUTH_TOKEN_KEY: string;
@@ -7,7 +8,7 @@ declare const SHOP_KEY: string;
 declare const TOKEN_KEY: string;
 
 interface ILogoutContainerProps extends RouteComponentProps<{}> {
-    client: ApolloClient;
+    client: ApolloClient<any>;
 }
 
 class LogoutContainer extends React.Component<ILogoutContainerProps, {}> {

@@ -1,8 +1,15 @@
+import { InMemoryCache } from "apollo-cache-inmemory";
+import { ApolloClient } from "apollo-client";
+import { ApolloLink } from "apollo-link";
+import { setContext } from "apollo-link-context";
+import { onError } from "apollo-link-error";
+import { createHttpLink } from "apollo-link-http";
 import { ConnectedFlagsProvider, createFlagsReducer } from "flag";
 import * as React from "react";
-import { ApolloClient, ApolloProvider, createNetworkInterface } from "react-apollo";
+import { ApolloProvider } from "react-apollo";
+import { Provider } from "react-redux";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import { applyMiddleware, combineReducers, compose, createStore, Reducer } from "redux";
+import { combineReducers, createStore } from "redux";
 
 import { CallbackContainerWithData } from "../containers/CallbackContainer";
 import { HomeContainer } from "../containers/HomeContainer";
@@ -19,65 +26,65 @@ declare const SHOP_KEY: string;
 declare const TOKEN_KEY: string;
 
 // Create a network interface with the config for our GraphQL API
-const networkInterface = createNetworkInterface({
+const httpLink = createHttpLink({
     uri: BASE_API_URL,
 });
 
 // Automatically add the token from localStorage as the Authorization header
-networkInterface.use([{
-    applyMiddleware(req, next) {
-        const token = localStorage.getItem(TOKEN_KEY);
-        if (token) {
-            if (!req.options.headers) {
-                // @ts-ignore
-                req.options.headers = {};  // Create the header object if needed.
+const authLink = setContext((_, { headers }) => {
+    // get the authentication token from local storage if it exists
+    const token = localStorage.getItem(TOKEN_KEY);
+    // return the headers to the context so httpLink can read them
+    return {
+        headers: {
+            ...headers,
+            authorization: token ? `Bearer ${token}` : null,
+        },
+    };
+});
+
+// Automatically redirect to /login if the GraphQL API returns 403 (Forbidden)
+const errorLink = onError(({ }) => {
+    // if (networkError && networkError.statusCode === 403) {
+    //     localStorage.removeItem("token");
+    //     window.location.pathname = "/login";
+    // }
+});
+
+// Replace the token in out session storage if the server sends back a new one
+const refreshTokenLink = new ApolloLink((operation, forward) => {
+    // @ts-ignore
+    return forward(operation).map((response) => {
+        const context = operation.getContext();
+        const { response: { headers } } = context;
+
+        if (headers) {
+            const newToken = headers.get("x-new-token");
+
+            if (newToken) {
+                localStorage.setItem(TOKEN_KEY, newToken);
             }
-            // get the authentication token from local storage if it exists
-            // @ts-ignore
-            req.options.headers.authorization = `Bearer ${token}`;
-        }
-        next();
-    },
-}]);
 
-networkInterface.useAfter([{
-    applyAfterware({ response }, next) {
-        // Replace the token in out session storage if the server sends back a new one
-        const newToken = response.headers.get("x-new-token");
-        if (newToken) {
-            localStorage.setItem(TOKEN_KEY, newToken);
         }
-
-        // Automatically redirect to /login if the GraphQL API returns 403 (Forbidden)
-        if (response.status === 403) {
-            localStorage.removeItem("token");
-            window.location.pathname = "/login";
-        }
-        next();
-    },
-}]);
+        return response;
+    });
+});
 
 // Create an Apollo client
 const client = new ApolloClient({
-    dataIdFromObject: (o: any) => o.id,
-    networkInterface,
+    cache: new InMemoryCache(),
+    connectToDevTools: true,
+    link: errorLink.concat(authLink).concat(refreshTokenLink).concat(httpLink),
 });
-
-// @ts-ignore
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 // Create the redux store
 const store = createStore(
     combineReducers({
-        apollo: client.reducer() as Reducer<any>,
         flags: createFlagsReducer({}),
     }),
     {}, // initial state
-    composeEnhancers(
-        applyMiddleware(client.middleware()),
-        // If you are using the devToolsExtension, you can add it here also
-    ),
-);
+    // @ts-ignore
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 // This is the routing for our app. /login, /logout and /auth/shopify/callback should all be unauthenticated. The
 // rest of the app should check that the user is authenticated and initialize the embedded app code if enabled
@@ -97,21 +104,23 @@ export class App extends React.Component<{}, {}> {
 
         return (
             <UnexpectedErrorContainer>
-                <ApolloProvider client={client} store={store}>
-                    <ConnectedFlagsProvider>
-                        <BrowserRouter>
-                            <Switch>
-                                <Route path="/login" component={LoginContainerWithData} />
-                                <Route path="/logout" component={LogoutContainerWithData} />
-                                <Route path="/auth/shopify/callback" component={CallbackContainerWithData} />
+                <Provider store={store}>
+                    <ApolloProvider client={client}>
+                        <ConnectedFlagsProvider>
+                            <BrowserRouter>
                                 <Switch>
-                                    <Route exact path="/" component={withShop(withEmbeddedApp(HomeContainer))} />
-                                    <Route component={withShop(withEmbeddedApp(NotFoundContainer))} />
+                                    <Route path="/login" component={LoginContainerWithData} />
+                                    <Route path="/logout" component={LogoutContainerWithData} />
+                                    <Route path="/auth/shopify/callback" component={CallbackContainerWithData} />
+                                    <Switch>
+                                        <Route exact path="/" component={withShop(withEmbeddedApp(HomeContainer))} />
+                                        <Route component={withShop(withEmbeddedApp(NotFoundContainer))} />
+                                    </Switch>
                                 </Switch>
-                            </Switch>
-                        </BrowserRouter>
-                    </ConnectedFlagsProvider>
-                </ApolloProvider>
+                            </BrowserRouter>
+                        </ConnectedFlagsProvider>
+                    </ApolloProvider>
+                </Provider>
             </UnexpectedErrorContainer>
         );
     }
