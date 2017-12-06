@@ -21,8 +21,6 @@ export function withShop<P extends IWithShopProps>(
             const shop = localStorage.getItem(SHOP_KEY);
             const token = localStorage.getItem(TOKEN_KEY);
 
-            console.log("Shop", shop);
-            console.log("Token", token);
             if (!token || !shop) {
                 return <Redirect push={true} to="/login" />;
             }

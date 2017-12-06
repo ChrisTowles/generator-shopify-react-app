@@ -35,7 +35,6 @@ class LoginContainer extends React.Component<ILoginContainerProps, ILoginContain
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        console.log("constructor()");
     }
 
     // Once the component has mounted we should check to see if the shop query string parameter was provided and
