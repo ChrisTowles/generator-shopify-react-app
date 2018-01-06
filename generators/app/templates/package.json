@@ -24,7 +24,7 @@
   },
   "homepage": "https://github.com/buggy/generator-shopify-react-app#readme",
   "dependencies": {
-    "@shopify/polaris": "^1.8.3",
+    "@shopify/polaris": "^1.9.1",
     "babel-polyfill": "^6.26.0",
     "flag": "^3.0.0-1",
     "raf": "^3.4.0",
