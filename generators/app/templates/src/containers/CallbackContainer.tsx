@@ -21,7 +21,7 @@ interface ICallbackContainerState {
 interface ICallbackContainerProps extends RouteComponentProps<{}> {
     data?: QueryProps;
     children?: React.ReactNode;
-    mutate: MutationFunc<ShopifyAuthCompleteMutation>;
+    mutate: MutationFunc<ShopifyAuthCompleteMutation, ShopifyAuthCompleteMutationVariables>;
 }
 
 class CallbackContainer extends React.Component<ICallbackContainerProps, ICallbackContainerState> {

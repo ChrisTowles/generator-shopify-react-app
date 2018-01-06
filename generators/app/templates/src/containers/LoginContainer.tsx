@@ -21,7 +21,7 @@ interface ILoginContainerState {
 interface ILoginContainerProps extends RouteComponentProps<{}> {
     data?: QueryProps;
     children?: React.ReactNode;
-    mutate: MutationFunc<ShopifyAuthBeginMutation>;
+    mutate: MutationFunc<ShopifyAuthBeginMutation, ShopifyAuthBeginMutationVariables>;
 }
 
 class LoginContainer extends React.Component<ILoginContainerProps, ILoginContainerState> {
